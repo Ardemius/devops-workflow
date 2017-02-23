@@ -1,9 +1,11 @@
 = DevOps workflow
 
-My try to represent a *complete DevOps workflow* as a schema. +
-Created under licence https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://en.wikipedia.org/wiki/File:Cc-by_new.svg[CC BY]
+My try to represent a *complete DevOps workflow* as a schema.
 
 image::DevOps%20AceTP.png[title="DevOps Workflow"]
+
+{nbsp} +
+Created under license https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg[CC BY, 25, 25]
 
 == Resources
 
