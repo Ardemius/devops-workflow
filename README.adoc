@@ -1,0 +1,18 @@
+= DevOps workflow
+
+My try to represent a *complete DevOps workflow* as a schema. +
+Created under licence https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://en.wikipedia.org/wiki/File:Cc-by_new.svg[CC BY]
+
+image::DevOps%20AceTP.png[title="DevOps Workflow"]
+
+== Resources
+
+* https://dzone.com/storage/assets/18140-Continuous-Delivery.pdf[DZone - The DZone guide to Continuous Delivery 2015]: p20/43
+* https://dzone.com/storage/assets/17431-docker-jenkins-continuous-delivery.pdf[DZone - Docker / Jenkins - Continuous Delivery]: p15/18
+* http://www.bogotobogo.com/DevOps/DevOps_CI_CD_Pipeline_Sample.php
+* http://www.rightscale.com/blog/cloud-management-best-practices/continuous-integration-and-delivery-cloud-how-rightscale-does-it
+* http://atginfo.com/demystifying-dev-ops-part-1/
+* http://agilityladder.nl/it-value/continuous-delivery/: circular graph on Continuous Delivery
+
+
+
