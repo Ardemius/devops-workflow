@@ -1,4 +1,4 @@
-= DevOps workflow
+= DevOps workflow notes
 Thomas SCHWENDER <icon:github[] https://github.com/Ardemius/[GitHub] / icon:twitter[role="aqua"] https://twitter.com/thomasschwender[@thomasschwender]>
 // Handling GitHub admonition blocks icons
 ifndef::env-github[:icons: font]
@@ -34,18 +34,6 @@ endif::[]
 // :caption:
 
 toc::[]
-
-My try to represent a *complete DevOps workflow* as a schema, with the description of its phases.
-
-== DevOps workflow and phases schema
-
-image::DevOps%20AceTP.png[title="DevOps Workflow"]
-
-{nbsp} +
-Completely done with https://inkscape.org/en/[Inkscape]. +
-Created under license https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg[CC BY, 25, 25]
-
-TIP: The PNG and SVG files for this schema are available in the _images_ folder of this repo 😉 
 
 == Phases description
 
