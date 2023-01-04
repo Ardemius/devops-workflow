@@ -35,6 +35,12 @@ endif::[]
 
 toc::[]
 
+[TIP]
+====
+Pour un *meilleur rendu de l'article*, plutôt que le rendu natif de GitHub du fichier README.adoc, une *version HTML générée en appelant le préprocesseur Asciidoctor* est disponible via les *GitHub pages* du repo : +
+https://ardemius.github.io/devops-workflow/docs/devops-workflow_article.html
+====
+
 == Phases description
 
 === PLAN
