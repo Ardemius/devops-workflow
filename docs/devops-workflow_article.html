@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="author" content="Thomas SCHWENDER">
+<title>Workflow DevOps</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Workflow DevOps</h1>
+<div class="details">
+<span id="author" class="author">Thomas SCHWENDER</span><br>
+<span id="email" class="email"><span class="icon"><i class="fa fa-github"></i></span> <a href="https://github.com/Ardemius/">GitHub</a> / <span class="icon aqua"><i class="fa fa-twitter"></i></span> <a href="https://twitter.com/thomasschwender">@thomasschwender</a></span><br>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_schéma_dun_workflow_devops_et_de_ses_phases">Schéma d&#8217;un workflow DevOps et de ses phases</a></li>
+<li><a href="#_continuous_everything">Continuous "Everything"</a></li>
+<li><a href="#_description_des_phases">Description des phases</a>
+<ul class="sectlevel2">
+<li><a href="#_plan">PLAN</a></li>
+<li><a href="#_code">CODE</a>
+<ul class="sectlevel3">
+<li><a href="#_stratégie_de_branching_git">Stratégie de branching Git</a></li>
+</ul>
+</li>
+<li><a href="#_build">BUILD</a></li>
+<li><a href="#_test">TEST</a></li>
+<li><a href="#_release">RELEASE</a></li>
+<li><a href="#_deploy">DEPLOY</a></li>
+<li><a href="#_operate">OPERATE</a></li>
+<li><a href="#_feedback_monitoring">FEEDBACK &amp; MONITORING</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ma représentation d&#8217;un <strong>worflow DevOps complet</strong> sous forme de schéma, avec la <strong>description de ses phases</strong>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_schéma_dun_workflow_devops_et_de_ses_phases"><a class="anchor" href="#_schéma_dun_workflow_devops_et_de_ses_phases"></a>Schéma d&#8217;un workflow DevOps et de ses phases</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="../images/DevOps%20AceTP.png" alt="DevOps%20AceTP">
+</div>
+<div class="title">DevOps Workflow</div>
+</div>
+<div class="paragraph">
+<p>&#160;<br>
+Réalisé intégralement avec <a href="https://inkscape.org/en/">Inkscape</a>.<br>
+Sous licence <a href="https://en.wikipedia.org/wiki/Creative_Commons_license">Creative Commons <strong>BY</strong></a> <span class="image"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg" alt="CC BY" width="25" height="25"></span></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Les fichiers <strong>PNG</strong> and <strong>SVG</strong> du schéma sont disponibles dans le répertoire <em>images</em> du repo 😉</p>
+</li>
+<li>
+<p>Mes <strong>notes de recherche</strong> sur les phases sont dans le fichier <a href="devops-workflow_notes.adoc" class="bare">devops-workflow_notes.adoc</a></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_continuous_everything"><a class="anchor" href="#_continuous_everything"></a>Continuous "Everything"</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette section a pour objectif d&#8217;expliquer de quoi il est question quand on parle de "Continuous Integration", "Continuous Delivery", "Continuous Deployment" et de CI/CD.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Continuous Integration</strong> (<strong>CI</strong>) :<br>
+L&#8217;Intégration Continue s&#8217;aligne avec les phases <strong>CODE</strong>, <strong>BUILD</strong> et <strong>TEST</strong> du précédent schéma.
+<br><br>
+Cette pratique consiste en l'<strong>intégration régulière</strong> par les développeurs des modifications de leur code source dans un <strong>gestionnaire de code centralisé</strong>, et en <strong>l&#8217;automatisation de la conduite de tests</strong> visant à détecter l&#8217;introduction de régressions dans le code.</p>
+</li>
+<li>
+<p><strong>Continuous Delivery</strong> (<strong>CD</strong>) :<br>
+La Livraison Continue <strong>complète l&#8217;Intégration Continue</strong> à laquelle elle ajoute les phases <strong>RELEASE</strong> et <strong>DEPLOY</strong> du précédent schéma.<br>
+Une précision importante cependant : dans le cas de la Livraison Continue, le <strong>déploiement</strong>, associé à la phase DEPLOY, est le résultat d&#8217;une <strong>action manuelle</strong> et NON d&#8217;une exécution automatique.
+<br><br>
+En plus des objectifs de la CI, la Livraison Continue rajoute les objectifs suivants :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>L&#8217;automatisation de la création des livrables</strong> de l&#8217;application</p>
+</li>
+<li>
+<p><strong>L&#8217;automatisation du déploiement et de la configuration de ces livrables dans les différents environnements de qualification</strong> (par exemple environnements d&#8217;intégration, de recette, de pre-prod) à l&#8217;exception de la production qui nécessite une approbation manuelle</p>
+</li>
+<li>
+<p><strong>L&#8217;automatisation de la conduite de tests</strong> dans les différents environnements où les livrables ont été déployés.<br>
+Les livrables ne pouvant être "promus" dans un environnement supérieur qu&#8217;à partir du moment où ils ont validé les tests de l&#8217;environnement présent.<br>
+Exemple : les livrables doivent valider les tests spécifiques à l&#8217;environnement d&#8217;intégration avant d&#8217;être promus (déployés) en environnement de recette.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Continuous Deployment</strong> (de nouveau "<strong>CD</strong>", comme pour le Continous Delivery) :<br>
+<strong>Déploiement Continu et Livraison Continue sont similaires</strong> à la seule différence que la Livraison Continue nécessite une action manuelle pour le déploiement des livrables en environnement de production (ce qui correspond à la véritable "MEP / Mise En Production" de l&#8217;application), alors que le Déploiement Continu réalise la mise en production automatiquement.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">Continous Integration, Delivery and Deployment (<a href="https://aws.amazon.com/fr/devops/continuous-delivery/" class="bare">https://aws.amazon.com/fr/devops/continuous-delivery/</a>)</div>
+<p><span class="image"><img src="../images/continuous-integration-delivery-deployment.png" alt="continuous integration delivery deployment"></span></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>CI/CD</strong> :<br>
+L&#8217;expression "CI/CD" désigne simplement la combinaison de 2 ou 3 des pratiques précédentes :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Continuous Integration (CI) et Continuous Delivery (CD)</p>
+</li>
+<li>
+<p>Continuous Integration (CI) et Continuous Delivery (CD) et Continous Deployment (CD)
+<br><br>
+On parlera souvent de "<strong>chaîne de CI/CD</strong>" pour désigner l&#8217;ensemble d&#8217;outils et le workflow d&#8217;étapes permettant d&#8217;implémenter les pratiques de CI et CD.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>DevOps</strong> :<br>
+Le DevOps, contraction de <strong>Dev</strong> pour Development (Développement) et <strong>Ops</strong> pour Operations (Exploitation), désigne à la fois un ensemble de pratiques (auxquelles appartiennent celles précédemment décrites) et d&#8217;outils et une philosophie / culture de travail.
+<br><br>
+Son but est d&#8217;améliorer la capacité d&#8217;une entreprise à <strong>livrer rapidement</strong> des applications et services, de <strong>garantir leur qualité</strong>, de <strong>faciliter leur évolution</strong> afin au final de <strong>gagner en compétitivité</strong>.
+<br><br>
+On pourra parler aussi bien de "pratiques DevOps" que de "mouvement DevOps", d'"approche DevOps", ou encore de "cycle (de vie) DevOps" ou autre "pipeline" et "workflow" DevOps.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_description_des_phases"><a class="anchor" href="#_description_des_phases"></a>Description des phases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_plan"><a class="anchor" href="#_plan"></a>PLAN</h3>
+<div class="paragraph">
+<p>La phase de planification / conception concerne tout ce qui a lieu AVANT que l&#8217;équipe de développement ne débute l&#8217;écriture du code.<br>
+C&#8217;est le moment où l&#8217;on va construire la roadmap produit afin de guider les développements à venir.</p>
+</div>
+<div class="paragraph">
+<p>Cette roadmap est généralement enregistrée et suivie à l&#8217;aide d&#8217;un <strong>outil de gestion de projet</strong> comme Jira, Trello, Azure DevOps (fonctionnalité "Boards"), etc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code"><a class="anchor" href="#_code"></a>CODE</h3>
+<div class="paragraph">
+<p>C&#8217;est durant cette phase que l&#8217;équipe de développement implémente les stories de la roadmap produit, et donc "écrit le code".</p>
+</div>
+<div class="paragraph">
+<p>Pour ce faire, les développeurs utilisent un ensemble d'<strong>outils</strong> (IDE et leurs plugins, outil de modélisation, utilitaires divers, etc.), <strong>langages de développement</strong> (Java, Python, etc.), <strong>frameworks</strong> (Spring, Hibernate, etc.), <strong>librairies</strong> (Guava, Apache Commons, etc.) et <strong>spécifications</strong> (JAX-RS, CDI, JSON-P, etc.), pour certains <strong>définis au niveau de l&#8217;organisation</strong>, pour d&#8217;autres <strong>spécifiques au projet</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Une fois écrit, le code doit être sauvegardé et partagé dans l&#8217;équipe à l&#8217;aide de solutions d&#8217;hébergement de code (<strong>Source Code Repository Manager</strong>) s&#8217;appuyant sur un logiciel de <strong>SCM</strong> (<strong>Source Code Management</strong>).<br>
+<strong>Git</strong> est actuellement le SCM le plus utilisé au monde, et parmi les repo manager populaires s&#8217;appuyant dessus nous trouvons aujourd&#8217;hui GitHub, GitLab, Bitbucket pour ne citer qu&#8217;eux.</p>
+</div>
+<div class="sect3">
+<h4 id="_stratégie_de_branching_git"><a class="anchor" href="#_stratégie_de_branching_git"></a>Stratégie de branching Git</h4>
+<div class="paragraph">
+<p>2 types de stratégies de gestion de branches ("branching strategies") sont globalement utilisées aujourd&#8217;hui (2022) sur le marché :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les workflows dits de "<strong>feature branching</strong>" auxquels appartiennent Git Flow, GitHub flow et GitLab flow.
+<br><br>
+<span class="image"><img src="../images/git-branching-strategies_feature-branching.png" alt="git branching strategies feature branching" width="800"></span></p>
+</li>
+<li>
+<p>Les workflow dits "<strong>trunk-based</strong>" (on parlera de "trunk-based development")
+<br><br>
+<span class="image"><img src="../images/git-branching-strategies_trunk-based.png" alt="git branching strategies trunk based" width="600"></span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="small">Source des 2 précédents schémas : <a href="https://learn.microsoft.com/fr-fr/archive/blogs/technet/devops/a-git-workflow-for-continuous-delivery" class="bare">https://learn.microsoft.com/fr-fr/archive/blogs/technet/devops/a-git-workflow-for-continuous-delivery</a></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Depuis quelques années maintenant, le <strong>trunk-based development</strong> est redevenu la <strong>stratégie de branching la plus utilisée</strong>, devant le feature branching qui avait pris le lead lors de l&#8217;adoption massive des outils de type DVCS (basés sur Git).<br>
+&#8594; C&#8217;est principalement la conséquence des <strong>difficultés de merge</strong> rencontrées avec le <strong>feature branching</strong> du fait du grand nombre de branches manipulées ("feature branches hell")</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build"><a class="anchor" href="#_build"></a>BUILD</h3>
+<div class="paragraph">
+<p>La phase de BUILD est celle où le code source va être récupéré (du précédent repo manager) puis buildé afin de pouvoir être testé.</p>
+</div>
+<div class="paragraph">
+<p>Le résultat du build, souvent appelé "<strong>archive</strong>" (JAR pour Java ARchive, WAR pour Web ARchive, etc.), a pour vocation d&#8217;être ensuite déployé, testé et validé dans les différents environnements du projet (par exemple DEVELOPPEMENT, INTEGRATION, RECETTE, PRE-PRODUCTION et finalement PRODUCTION).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Il est à noter que l&#8217;on devrait toujours <strong>ne builder qu&#8217;une unique fois</strong> une archive, puis déployer et tester progressivement cette même archive dans les différents environnements et NON builder une archive spécifique par environnement.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La <strong>création de l&#8217;archive</strong> à partir du code source est réalisée à l&#8217;aide d&#8217;un <strong>outil de build</strong>.<br>
+Parmi les plus connus on retrouve Maven, Gradle, Ant, NPM, etc.</p>
+</div>
+<div class="paragraph">
+<p>Le <strong>déclenchement du build</strong> est généralement réalisé par un outil d&#8217;automatisation, de type <strong>serveur d&#8217;intégration continue</strong>.<br>
+L&#8217;élément déclencheur du build ("trigger") est soit une action manuelle, soit la détection en temps presque réel d&#8217;une modification du code dans le repo manager (présence d&#8217;un nouveau commit modifiant le code).<br>
+Les serveurs d&#8217;intégration délègue ensuite la création de l&#8217;archive aux outils de build vus précédemment.
+Parmi les serveurs d&#8217;intégration continue les plus connus on retrouve Jenkins, Travis CI, GitLab CI, Azure DevOps, etc.</p>
+</div>
+<div class="paragraph">
+<div class="title">Exemple de workflow avec Jenkins</div>
+<p><span class="image"><img src="../images/jenkins-workflow-example.jpg" alt="jenkins workflow example"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_test"><a class="anchor" href="#_test"></a>TEST</h3>
+<div class="paragraph">
+<p>Une fois buildés, les archives sont déployés dans un environnement de qualification où plusieurs séries de tests, manuels (UAT ou tests de recette) et / ou automatiques (tests d&#8217;intégration, d&#8217;API, de sécurité, etc.) sont déroulés.<br>
+Les archives peuvent également être déployées dans plusieurs environnements de qualification, chacun étant l&#8217;objet de tests de natures différentes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release"><a class="anchor" href="#_release"></a>RELEASE</h3>
+<div class="paragraph">
+<p>La phase de release est celle où le <strong>livrable de production</strong> (certains outils parleront de "package" ou "deployment package") va être créé en combinant les archives précédemment buildées et testées avec les différents paramètres permettant de les dédier à l&#8217;environnement ciblé (package = archives + fichiers de paramétrage).</p>
+</div>
+<div class="paragraph">
+<p>Le livrable de production / package ainsi créé sera ensuite stocké dans un <strong>référentiel spécifique</strong>.
+Suivant la nature du livrable, ce référentiel pourra être soit un <strong>repository manager</strong> (Nexus et Artifactory sont les plus utilisés), ou un outil dédié (Digital.ai Deploy (anciennement XL Deploy) )</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy"><a class="anchor" href="#_deploy"></a>DEPLOY</h3>
+<div class="paragraph">
+<p>La phase de DEPLOY correspond au déploiement, à l&#8217;installation du livrable de production de la phase RELEASE en environnement de PROD.<br>
+Ce déploiement peut être soit manuel dans le cadre d&#8217;une approche <strong>Continuous Delivery</strong>, soit <strong>automatique</strong> dans le cadre du <strong>Continuous Deployment</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Les principaux outils permettant de configurer un environnement à partir des éléments contenus dans le livrable de production sont appelés <strong>outils d&#8217;automatisation et de gestion de configuration</strong>, parmi lesquels on peut citer <strong>Ansible</strong>, <strong>XL Deploy</strong> (Digital.ai Deploy), <strong>Terraform</strong>.<br>
+Ces outils permettent d&#8217;automatiser totalement la procédure de déploiement qui est décrite sous forme de fichier (descripteur de déploiement), on parlera d'<strong>Infrastructure-as-Code</strong> (<strong>IaC</strong>)</p>
+</div>
+<div class="paragraph">
+<p>Et, plutôt que de déployer un livrable sur un serveur physique, les <strong>solutions de virtualisation et conteneurisation</strong> sont plébiscitées.<br>
+Ces dernières, conjuguées à l&#8217;Infrastructure-as-Code, permettent une meilleure agilité et scalabilité (capacité à détruire, recréer et ajouter au besoin un ou plusieurs runtime / environnements), des caractéristiques très demandées pour les architectures Cloud et microservices qui multiplient le nombre de serveurs et services.<br>
+Parmi les solutions de virtualisation et de conteneurisation les plus connues : toutes les stacks Cloud actuelles, Docker, Podman, Kubernetes, OpenShift, etc.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_operate"><a class="anchor" href="#_operate"></a>OPERATE</h3>
+<div class="paragraph">
+<p>A ce stade, l&#8217;application est déployée en PROD et est en cours de fonctionnement.<br>
+La phase OPERATE regroupe toutes les opérations visant à assurer le bon fonctionnement de l&#8217;application.<br>
+On y retrouve :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La mise en place de moyens de <strong>détection de tout comportement anormal</strong> de l&#8217;application (<strong>monitoring</strong>), devant donner lieu à la génération d&#8217;une <strong>alerte</strong> (<strong>alerting</strong>).<br>
+Ces alertes seront stockées dans un outil de <strong>gestion de tickets</strong> (Issue Tracking System, ITS).
+<br><br>
+Exemples de comportement anormal de l&#8217;application : rupture de SLA, serveur down, absence de réponse d&#8217;un service, etc.</p>
+</li>
+<li>
+<p>Toutes les <strong>interventions de support</strong>, manuelle ou automatique (script ou autre outil) ayant pour but de corriger un problème afin de revenir à un comportement normal de l&#8217;application.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Parmi les solutions ITS les plus connues : JIRA, ServiceNow, Mantis</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Différences entre monitoring et alerting</div>
+<div class="paragraph">
+<p>Le <strong>monitoring</strong> est le processus par lequel on maintient la surveillance sur l&#8217;état d&#8217;un système.<br>
+Un système <strong>dit de monitoring</strong> représente un ensemble d&#8217;outils permettant la collecte, le traitement et la visualisation (dashboard, indicateurs visuels, etc.) de données de télémétrie.</p>
+</div>
+<div class="paragraph">
+<p>Le monitoring peut être soit :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Proactive</strong> : il est nécessaire de consulter régulièrement les outils de visualisation du monitoring pour se tenir au courant de l&#8217;état du système</p>
+</li>
+<li>
+<p><strong>Réactif</strong> : c&#8217;est le système de monitoring qui informera automatiquement d&#8217;un changement prédéfini de l&#8217;état du système, via l&#8217;envoi de notification ou d&#8217;alerte.<br>
+On parlera d'<strong>alerting</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#8594; L'<strong>alerting</strong> correspond donc à la capacité d&#8217;un système de monitoring de <strong>détecter un changement d&#8217;état</strong> donné et d&#8217;en <strong>notifier</strong> l&#8217;équipe d&#8217;exploitation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les systèmes de monitoring sont souvent regroupés en sous-catégories suivant leur spécialité.
+Voici quelques exemples :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>les APM (Application Performance Management) : Dynatrace et Datadog</p>
+</li>
+<li>
+<p>logiciel de supervision : Centreon, Sentry, Nagios</p>
+</li>
+<li>
+<p>Prometheus pour le monitoring de Kubernetes</p>
+</li>
+<li>
+<p>La stack ELK (collecte de données avec Logstash, requêtage avec Elasticsearch et dashboarding avec Kibana)</p>
+</li>
+<li>
+<p><strong>OpenTelemetry</strong> devient de plus en plus la norme pour l'<strong>envoi</strong> et la <strong>collecte de données</strong> de télémétrie</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_feedback_monitoring"><a class="anchor" href="#_feedback_monitoring"></a>FEEDBACK &amp; MONITORING</h3>
+<div class="paragraph">
+<p>L&#8217;idée de cette phase de "feedback &amp; monitoring" est que l&#8217;analyse des données de télémétrie doit permettre de mieux <strong>comprendre l&#8217;application</strong> afin d&#8217;être capable d'<strong>anticiper</strong>, de <strong>prédire</strong> son comportement futur, afin de prévenir d&#8217;éventuels problèmes d&#8217;arriver.</p>
+</div>
+<div class="paragraph">
+<p>Les outils utilisés sont <strong>les mêmes systèmes de monitoring que pour la phase Operate</strong>, mais plutôt qu&#8217;être utilisés pour de l&#8217;alerting (c&#8217;est-à-dire notifier d&#8217;un problème / incident via l&#8217;envoi d&#8217;une alerte), ils vont servir à observer l&#8217;évolution de l&#8217;état de l&#8217;application afin de nous donner la capacité d&#8217;entreprendre des actions visant à prévenir tout futur problème.<br>
+Ces actions seront donc réalisées <strong>AVANT</strong> qu&#8217;un problème, et donc une alerte, ne soit remonté.</p>
+</div>
+<div class="paragraph">
+<p>Cette observation de l&#8217;évolution de l&#8217;état de l&#8217;application devant être réalisée sur un période de temps et non un instant "t", elle implique souvent l&#8217;utilisation de <strong>timeseries</strong> (séries temporelles).</p>
+</div>
+<div class="paragraph">
+<p>Le <strong>feedback</strong> implique également l&#8217;observation de l&#8217;efficacité des actions correctives déjà menées : ces dernières ont-elles été efficaces ? Pérennes ? Workaround avant une solution durable ?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-01-04 16:42:13 UTC
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/languages/asciidoc.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
+</body>
+</html>
