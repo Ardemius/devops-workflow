@@ -63,6 +63,8 @@ Une fois écrit, le code doit être sauvegardé et partagé dans l'équipe à l'
             **** je cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
             **** en fait, on retrouve ces schémas dans cet article de Medium (2018) : +
             https://medium.com/safetycultureengineering/trunks-are-not-just-for-trees-from-git-flow-to-trunk-based-development-949d580697ef
+            **** mais en fait, ils viennent initialement de cet article de Microsoft : +
+            https://blogs.technet.microsoft.com/devops/2016/06/21/a-git-workflow-for-continuous-delivery
             **** très très bon REX du Git flow, de ses écueils, et des raisons du retour au trunk-based development
         *** https://dzone.com/articles/why-i-prefer-trunk-based-development-over-feature
             **** bon (vieux) schéma du trunk-based development

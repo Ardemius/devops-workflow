@@ -51,9 +51,7 @@ Sous licence https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Com
 * Mes *notes de recherche* sur les phases sont dans le fichier link:devops-workflow_notes.adoc[]
 ====
 
-== Description des phases
-
-=== Continuous "Everything"
+== Continuous "Everything"
 
 Cette section a pour objectif d'expliquer de quoi il est question quand on parle de "Continuous Integration", "Continuous Delivery", "Continuous Deployment" et de CI/CD.
 
@@ -93,6 +91,7 @@ Son but est d'améliorer la capacité d'une entreprise à *livrer rapidement* de
 {lb}
 On pourra parler aussi bien de "pratiques DevOps" que de "mouvement DevOps", d'"approche DevOps", ou encore de "cycle (de vie) DevOps" ou autre "pipeline" et "workflow" DevOps.
 
+== Description des phases
 
 === PLAN
 
@@ -105,27 +104,30 @@ Cette roadmap est généralement enregistrée et suivie à l'aide d'un *outil de
 
 C'est durant cette phase que l'équipe de développement implémente les stories de la roadmap produit, et donc "écrit le code".
 
-Pour ce faire, les développeurs utilisent un ensemble d'outils (IDE et leurs plugins, outil de modélisation, utilitaires divers, etc.), langages de développement (Java, Python, etc.), frameworks (Spring, Hibernate, etc.), librairies (Guava, Apache Commons, etc.) et spécifications (JAX-RS, CDI, JSON-P, etc.), pour certains définis au niveau de l'organisation, pour d'autres spécifiques au projet.
+Pour ce faire, les développeurs utilisent un ensemble d'*outils* (IDE et leurs plugins, outil de modélisation, utilitaires divers, etc.), *langages de développement* (Java, Python, etc.), *frameworks* (Spring, Hibernate, etc.), *librairies* (Guava, Apache Commons, etc.) et *spécifications* (JAX-RS, CDI, JSON-P, etc.), pour certains *définis au niveau de l'organisation*, pour d'autres *spécifiques au projet*.
 
 Une fois écrit, le code doit être sauvegardé et partagé dans l'équipe à l'aide de solutions d'hébergement de code (*Source Code Repository Manager*) s'appuyant sur un logiciel de *SCM* (*Source Code Management*). +
 *Git* est actuellement le SCM le plus utilisé au monde, et parmi les repo manager populaires s'appuyant dessus nous trouvons aujourd'hui GitHub, GitLab, Bitbucket pour ne citer qu'eux.
 
-==== Ressources 
+==== Stratégie de branching Git
 
-* *Git branching strategy* : 
-    ** feature branching (Gitflow, GitHub flow ou GitLab flow) vs trunk-based development : 
-        *** https://dzone.com/articles/why-i-prefer-trunk-based-development-over-feature
-        *** 2022 : https://nira.com/git-branching-strategies-vs-trunk-based-development/ 
-        *** https://hitesh-pattanayak.medium.com/git-flow-development-vs-trunk-based-debelopment-923ce4553043
-            **** je cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
-            **** en fait, on retrouve ces schémas dans cet article de Medium (2018) : +
-            https://medium.com/safetycultureengineering/trunks-are-not-just-for-trees-from-git-flow-to-trunk-based-development-949d580697ef
-            **** très très bon REX du Git flow, de ses écueils, et des raisons du retour au trunk-based development
-        *** https://dzone.com/articles/why-i-prefer-trunk-based-development-over-feature
-            **** bon (vieux) schéma du trunk-based development
+2 types de stratégies de gestion de branches ("branching strategies") sont globalement utilisées aujourd'hui (2022) sur le marché :
 
-    ** Depuis quelques années maintenant, le *trunk-based development* est redevenu la stratégie de branching la plus utilisée, devant le feature branching qui avait pris le lead lors de l'adoption massive des outils de type DVCS (basés sur Git).
-        *** Principalement du fait de difficultés de merge rencontrées avec le feature branching du fait du grand nombre de branches manipulées ("feature branches hell")
+    * Les workflows dits de "*feature branching*" auxquels appartiennent Git Flow, GitHub flow et GitLab flow.
+    {lb}
+    image:git-branching-strategies_feature-branching.png[width=800]
+
+    * Les workflow dits "*trunk-based*" (on parlera de "trunk-based development")
+    {lb}
+    image:git-branching-strategies_trunk-based.png[width=600]
+
+[.small]#Source des 2 précédents schémas : https://learn.microsoft.com/fr-fr/archive/blogs/technet/devops/a-git-workflow-for-continuous-delivery#
+
+[NOTE]
+====
+Depuis quelques années maintenant, le *trunk-based development* est redevenu la *stratégie de branching la plus utilisée*, devant le feature branching qui avait pris le lead lors de l'adoption massive des outils de type DVCS (basés sur Git). +
+-> C'est principalement la conséquence des *difficultés de merge* rencontrées avec le *feature branching* du fait du grand nombre de branches manipulées ("feature branches hell")
+====
 
 === BUILD
 
