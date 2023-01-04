@@ -165,76 +165,55 @@ Suivant la nature du livrable, ce référentiel pourra être soit un *repository
 
 === DEPLOY
 
-----
-La phase de DEPLOY correspond au déploiement, à l'installation du livrable de production de la phase RELEASE en environnement de PROD.
-Ce déploiement peut être soit manuel dans le cadre d'une approche Continuous Delivery, soit automatique dans le cadre du Continuous Deployment.
+La phase de DEPLOY correspond au déploiement, à l'installation du livrable de production de la phase RELEASE en environnement de PROD. +
+Ce déploiement peut être soit manuel dans le cadre d'une approche *Continuous Delivery*, soit *automatique* dans le cadre du *Continuous Deployment*.
 
-Les principaux outils permettant de configurer un environnement à partir des éléments contenus dans le livrable de production sont appelés outils d'automatisation et de gestion de configuration, parmi lesquels on peut citer Ansible, XL Deploy (Digital.ai Deploy), Terraform.
-Ces outils permettent d'automatiser totalement la procédure de déploiement qui est décrite sous forme de fichier (descripteur de déploiement), on parlera d'Infrastructure-as-Code (IaC)
+Les principaux outils permettant de configurer un environnement à partir des éléments contenus dans le livrable de production sont appelés *outils d'automatisation et de gestion de configuration*, parmi lesquels on peut citer *Ansible*, *XL Deploy* (Digital.ai Deploy), *Terraform*. +
+Ces outils permettent d'automatiser totalement la procédure de déploiement qui est décrite sous forme de fichier (descripteur de déploiement), on parlera d'*Infrastructure-as-Code* (*IaC*)
 
-Et, plutôt que de déployer un livrable sur un serveur physique, les solutions de virtualisation et conteneurisation sont plébiscitées.
-Ces dernières, conjuguées à l'Infrastrucuture-as-Code, permettent une meilleure agilité et scalabilité (capacité à détruire, recréer et ajouter au besoin un ou plusieurs runtime / environnements), des caractéristiques très demandées pour les architectures Cloud et microservices qui multiplient le nombre de serveurs et services.
+Et, plutôt que de déployer un livrable sur un serveur physique, les *solutions de virtualisation et conteneurisation* sont plébiscitées. +
+Ces dernières, conjuguées à l'Infrastructure-as-Code, permettent une meilleure agilité et scalabilité (capacité à détruire, recréer et ajouter au besoin un ou plusieurs runtime / environnements), des caractéristiques très demandées pour les architectures Cloud et microservices qui multiplient le nombre de serveurs et services. +
 Parmi les solutions de virtualisation et de conteneurisation les plus connues : toutes les stacks Cloud actuelles, Docker, Podman, Kubernetes, OpenShift, etc.
-----
-
-* Définition claire du but d'Ansible : https://blog.stephane-robert.info/post/introduction-ansible/
-* Pour les autres outils d'automatisation et gestion de configuration les plus utilisés en 2022, voir https://www.servertribe.com/top-5-ansible-alternatives/
-    ** En gros, Terraform, Puppet, Chef
 
 === OPERATE
 
-* outils d'alerting les plus utilisés en 2022 : https://www.g2.com/categories/it-alerting
-+
---
-*IT alerting software* delivers notifications for *IT systems failures*. These tools will monitor systems for poor performance, infrastructure issues, and other IT management issues. These notifications may be delivered via email, SMS, or other means of communication. Companies use these tools to identify issues within their networks, IT infrastructure, and other IT systems to reduce downtime and prevent potential permanent damage.
---
+A ce stade, l'application est déployée en PROD et est en cours de fonctionnement. +
+La phase OPERATE regroupe toutes les opérations visant à assurer le bon fonctionnement de l'application. +
+On y retrouve : 
 
-* Très bon article sur OpenTelemetry, l'observabilité, les logs / métriques / traces : 
-https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
-    ** OpenTelemetry : OpenTelemetry sera à terme le cadre d'observabilité dominant dans le paysage de télémétrie natif du cloud.
+    * La mise en place de moyens de *détection de tout comportement anormal* de l'application (*monitoring*), devant donner lieu à la génération d'une *alerte* (*alerting*). +
+    Ces alertes seront stockées dans un outil de *gestion de tickets* (Issue Tracking System, ITS).
+    {lb}
+    Exemples de comportement anormal de l'application : rupture de SLA, serveur down, absence de réponse d'un service, etc.
 
-* Prometheus : https://prometheus.io/docs/introduction/overview/
-    ** "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud."
-    ** "Prometheus collects and stores its metrics as time series data, i.e. metrics information is stored with the timestamp at which it was recorded, alongside optional key-value pairs called labels."
+    * Toutes les *interventions de support*, manuelle ou automatique (script ou autre outil) ayant pour but de corriger un problème afin de revenir à un comportement normal de l'application.
 
-* Definition of *alerting and monitoring* : https://www.oreilly.com/library/view/effective-monitoring-and/9781449333515/ch01.html (TRES BON)
-    ** contient également une bonne définition d'un *monitoring system* : +
-    "A set of software components used for data collection, their processing, and presentation is called a monitoring system.""
+Parmi les solutions ITS les plus connues : JIRA, ServiceNow, Mantis
+
+.Différences entre monitoring et alerting
+[NOTE]
+====
+Le *monitoring* est le processus par lequel on maintient la surveillance sur l'état d'un système. +
+Un système *dit de monitoring* représente un ensemble d'outils permettant la collecte, le traitement et la visualisation (dashboard, indicateurs visuels, etc.) de données de télémétrie.
+
+Le monitoring peut être soit :
+
+    * *Proactive* : il est nécessaire de consulter régulièrement les outils de visualisation du monitoring pour se tenir au courant de l'état du système
     
-    ** Différence entre monitoring et alerting : 
+    * *Réactif* : c'est le système de monitoring qui informera automatiquement d'un changement prédéfini de l'état du système, via l'envoi de notification ou d'alerte. +
+    On parlera d'*alerting*. 
 
-        *** *MONITORING* (proactive monitoring) : +
-        "The former involves watching visual indicators, such as timeseries and dashboards, and is sometimes what administrators mean by monitoring." +
-        "Monitoring is the *process of maintaining surveillance over the existence and magnitude of state change* and data flow in a system. Monitoring aims to identify faults and assist in their subsequent elimination. The techniques used in monitoring of information systems intersect the fields of real-time processing, statistics, and data analysis. A set of software components used for data collection, their processing, and presentation is called a *monitoring system*."
+-> L'*alerting* correspond donc à la capacité d'un système de monitoring de *détecter un changement d'état* donné et d'en *notifier* l'équipe d'exploitation.
+====
 
-        *** *ALERTING* (reactive monitoring) : +
-        "involves automated ways to deliver notifications to operators in order to bring to their attention a grave change in system's state; this is usually referred to as alerting." +
-        "Alerting is the *capability of a monitoring system to detect and notify the operators about meaningful events that denote a grave change of state*. The notification is referred to as an alert and is a simple message that may take multiple forms: email, SMS, instant message (IM), or a phone call. The alert is passed on to the appropriate recipient, that is, a party responsible for dealing with the event. The alert is often logged in the form of a ticket in an *Issue Tracking System* (ITS), also referred to simply as *ticketing system*."
-
-            **** Definition of an *alert* : +
-            "An alert is a *notification of a potential problem*, which can take one or more of the following forms: email, SMS, phone call, or a ticket. An alert is issued by an alarm when the system transitions through some threshold, and this threshold breach is detected by a monitor. Thus, for example, you may configure an alarm to alert you when the system exceeds 80% of CPU utilization for a continuous period of 10 minutes." +
-            "A notification message informing about a change of state, typically signifying a potential problem."
-
-    ** On ne peut PAS avoir d'alerting sans monitoring
-
-* Pour les ITS et outils de ticketing (bug reporting) : https://teambrain.fr/optimisez-votre-ticketing/
-    ** JIRA, ServiceNow, Mantis, etc.
-
-* Les systèmes de monitoring sont souvent regroupés en sous-catégories suivant leur spécialité. +
+Les systèmes de monitoring sont souvent regroupés en sous-catégories suivant leur spécialité.
 Voici quelques exemples : 
-    ** les APM (Application Performance Management) : Dynatrace et Datadog
-        *** https://www.g2.com/categories/it-alerting
-    ** logiciel de supervision : Centreon, Sentry, Nagios
-        *** voir https://www.lemagit.fr/definition/Surveillance-IT-IT-monitoring
-    ** Prometheus pour le monitoring de Kubernetes
-        *** https://prometheus.io/docs/introduction/overview/
-    ** OpenTelemetry devient de plus en plus la norme pour l'envoi et la collecte de données de télémétrie
 
-* Systèmes de monitoring : 
-    ** https://intellipaat.com/blog/devops-monitoring-tools/
-    ** https://www.g2.com/categories/it-alerting
-
-* Pour un exemple d'article qui met Centreon et Prometheus au même niveau, en tant que "outils de monitoring", voir : https://stackshare.io/stackups/centreon-vs-prometheus
+    * les APM (Application Performance Management) : Dynatrace et Datadog
+    * logiciel de supervision : Centreon, Sentry, Nagios
+    * Prometheus pour le monitoring de Kubernetes
+    * La stack ELK (collecte de données avec Logstash, requêtage avec Elasticsearch et dashboarding avec Kibana)
+    * *OpenTelemetry* devient de plus en plus la norme pour l'*envoi* et la *collecte de données* de télémétrie
 
 === FEEDBACK & MONITORING
 

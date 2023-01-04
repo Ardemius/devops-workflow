@@ -146,7 +146,7 @@ Les principaux outils permettant de configurer un environnement à partir des é
 Ces outils permettent d'automatiser totalement la procédure de déploiement qui est décrite sous forme de fichier (descripteur de déploiement), on parlera d'Infrastructure-as-Code (IaC)
 
 Et, plutôt que de déployer un livrable sur un serveur physique, les solutions de virtualisation et conteneurisation sont plébiscitées.
-Ces dernières, conjuguées à l'Infrastrucuture-as-Code, permettent une meilleure agilité et scalabilité (capacité à détruire, recréer et ajouter au besoin un ou plusieurs runtime / environnements), des caractéristiques très demandées pour les architectures Cloud et microservices qui multiplient le nombre de serveurs et services.
+Ces dernières, conjuguées à l'Infrastructure-as-Code, permettent une meilleure agilité et scalabilité (capacité à détruire, recréer et ajouter au besoin un ou plusieurs runtime / environnements), des caractéristiques très demandées pour les architectures Cloud et microservices qui multiplient le nombre de serveurs et services.
 Parmi les solutions de virtualisation et de conteneurisation les plus connues : toutes les stacks Cloud actuelles, Docker, Podman, Kubernetes, OpenShift, etc.
 ----
 
