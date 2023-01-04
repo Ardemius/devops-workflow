@@ -136,8 +136,6 @@ Suivant la nature du livrable, ce référentiel pourra être soit un repository 
 * semantic versioning pour les release
     ** https://code-garage.fr/blog/qu-est-ce-que-le-semantic-versioning/
 
-Pour l'accès au Nexus, faire une demande Jira ou peut-être demander à Hamdi
-
 === DEPLOY
 
 ----

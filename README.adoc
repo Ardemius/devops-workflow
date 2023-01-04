@@ -133,67 +133,35 @@ Depuis quelques années maintenant, le *trunk-based development* est redevenu la
 
 La phase de BUILD est celle où le code source va être récupéré (du précédent repo manager) puis buildé afin de pouvoir être testé.
 
-Le résultat du build, souvent appelé "archive" (JAR pour Java ARchive, WAR pour Web ARchive, etc.), a pour vocation d'être ensuite déployé, testé et validé dans les différents environnements du projet (par exemple DEVELOPPEMENT, INTEGRATION, RECETTE, PRE-PRODUCTION et finalement PRODUCTION).
+Le résultat du build, souvent appelé "*archive*" (JAR pour Java ARchive, WAR pour Web ARchive, etc.), a pour vocation d'être ensuite déployé, testé et validé dans les différents environnements du projet (par exemple DEVELOPPEMENT, INTEGRATION, RECETTE, PRE-PRODUCTION et finalement PRODUCTION).
 
- 	Il est à noter que l'on devrait toujours ne builder qu'une unique fois une archive, puis déployer et tester progressivement cette même archive dans les différents environnements et NON builder une archive spécifique par environnement
+[NOTE]
+====
+Il est à noter que l'on devrait toujours *ne builder qu'une unique fois* une archive, puis déployer et tester progressivement cette même archive dans les différents environnements et NON builder une archive spécifique par environnement.
+====
 
-La création de l'archive à partir du code source est réalisée à l'aide d'un outil de build.
+La *création de l'archive* à partir du code source est réalisée à l'aide d'un *outil de build*. +
 Parmi les plus connus on retrouve Maven, Gradle, Ant, NPM, etc.
 
-Le déclenchement du build est généralement réalisé par un outil d'automatisation, de type serveur d'intégration continue. 
-L'élément déclencheur du build ("trigger") est soit une action manuelle, soit la détection en temps presque réel d'une modification du code dans le repo manager (présence d'un nouveau commit modifiant le code).
+Le *déclenchement du build* est généralement réalisé par un outil d'automatisation, de type *serveur d'intégration continue*. +
+L'élément déclencheur du build ("trigger") est soit une action manuelle, soit la détection en temps presque réel d'une modification du code dans le repo manager (présence d'un nouveau commit modifiant le code). +
 Les serveurs d'intégration délègue ensuite la création de l'archive aux outils de build vus précédemment.
 Parmi les serveurs d'intégration continue les plus connus on retrouve Jenkins, Travis CI, GitLab CI, Azure DevOps, etc.
 
-* Rappel sur quelques formats d'archive : 
-    ** https://objis.com/comprendre-les-livraisons-j2ee-war-jars-rar-ear/
-    ** https://www.theserverside.com/feature/What-are-the-differences-between-EAR-JAR-and-WAR-files
-
-* alternatives à Jenkins en 2022 : 
-    ** https://www.capterra.fr/alternatives/171026/jenkins
-    ** Travis CI, CircleCI, TeamCity, etc.
-* Pour une définion de Jenkins mentionnant le concept de "automation", voir : +
-https://www.techtarget.com/searchsoftwarequality/definition/Jenkins
-    ** Jenkins est considéré comme une automation platform, un serveur d'intégration continue, un scheduler et peu également être utilisé comme ordonnanceur en le "tordant un peu"
-        *** Pour un véritable ordonnanceur, partir plutôt sur une solution de type Autosys, ou Control-M.
-        *** Pour ces derniers outils, on parlera davantage d'*orchestration* du flux de travail (il est souvent question de "workload automation", on pourra également parler d'orchestrateur de workflow): +
-        "Control‑M simplifies and automates diverse *batch application workloads* while reducing failure rates, improving SLAs, and accelerating application deployment."
-* Pour un exemple de workflow Jenkins : 
-    ** https://www.jenkins.io/pipeline/getting-started-pipelines/
-    ** https://www.jenkins.io/doc/book/pipeline/
-    ** très bon schéma, classique et clair, en 7:47 dans cette vidéo : +
-    https://youtu.be/8lGoul8KUdQ?t=467[Understanding DevOps using Jenkins, Maven, Nexus Artifactory and Ansible]
-* Cas d'usage de Jenkins pour des workflows allant jusqu'à la production : 
-    ** https://medium.com/@maxy_ermayank/pipeline-as-a-code-using-jenkins-2-aa872c6ecdce
-
-* Alternatives à Maven et autres build tools : 
-    ** https://alternativeto.net/software/gradle/
-    ** Maven, Gradle, Ant, SBT
-    ** NPM pour Node.js
-        *** voir https://devstory.net/11925/qu-est-ce-que-npm
+.Exemple de workflow avec Jenkins
+image:jenkins-workflow-example.jpg[]
 
 === TEST
 
-----
-Une fois buildés, les archives sont déployés dans un environnement de qualification où plusieurs séries de tests, manuels (UAT ou tests de recette) et / ou automatiques (tests d'intégration, d'API, de sécurité, etc.) sont déroulés.
+Une fois buildés, les archives sont déployés dans un environnement de qualification où plusieurs séries de tests, manuels (UAT ou tests de recette) et / ou automatiques (tests d'intégration, d'API, de sécurité, etc.) sont déroulés. +
 Les archives peuvent également être déployées dans plusieurs environnements de qualification, chacun étant l'objet de tests de natures différentes.
-----
-
-* Pyramide des tests : https://latavernedutesteur.fr/2022/02/07/pourquoi-une-pyramide-pour-les-tests/
 
 === RELEASE
 
-----
-La phase de release est celle où le livrable de production (certains outils parleront de "package" ou "deployment package") va être créé en combinant les archives précédemment buildées et testées avec les différents paramètres permettant de les dédier à l'environnement ciblé (package = archives + fichiers de paramétrage).
+La phase de release est celle où le *livrable de production* (certains outils parleront de "package" ou "deployment package") va être créé en combinant les archives précédemment buildées et testées avec les différents paramètres permettant de les dédier à l'environnement ciblé (package = archives + fichiers de paramétrage).
 
-Le livrable de production / package ainsi créé sera ensuite stocké dans un référentiel spécifique. 
-Suivant la nature du livrable, ce référentiel pourra être soit un repository manager (Nexus et Artifactory sont les plus utilisés), ou outil dédié (XL Deploy (maintenant Digital.ai Deploy)
-----
-
-* semantic versioning pour les release
-    ** https://code-garage.fr/blog/qu-est-ce-que-le-semantic-versioning/
-
-Pour l'accès au Nexus, faire une demande Jira ou peut-être demander à Hamdi
+Le livrable de production / package ainsi créé sera ensuite stocké dans un *référentiel spécifique*. 
+Suivant la nature du livrable, ce référentiel pourra être soit un *repository manager* (Nexus et Artifactory sont les plus utilisés), ou un outil dédié (Digital.ai Deploy (anciennement XL Deploy) )
 
 === DEPLOY
 
