@@ -217,65 +217,13 @@ Voici quelques exemples :
 
 === FEEDBACK & MONITORING
 
-* Monitoring and alerting : https://www.oreilly.com/library/view/effective-monitoring-and/9781449333515/ch01.html
-    ** Monitoring "refers to the process of becoming aware of the state of a system"
-    ** il y est question de la "*Monitoring's feedback loop*" : +
-    "Monitoring's feedback loop is also central to the idea of *Autonomic Computing* (AC), an architecture in which the system is capable of regulating itself and thus enabling self-management and self-healing. +
-    AC was inspired by the operation of the human central nervous system. It draws an analogy between it and a complex, distributed information system. Unconscious processes, such as the control over the rate of breath, do not require human effort. The goal of AC is to minimize the need for human intervention in a similar way, by replacing it with self-regulation. Comprehensive monitoring can provide an effective means to achieve this end."
-    ** le monitoring implique les *timeseries*
+L'idée de cette phase de "feedback & monitoring" est que l'analyse des données de télémétrie doit permettre de mieux *comprendre l'application* afin d'être capable d'*anticiper*, de *prédire* son comportement futur, afin de prévenir d'éventuels problèmes d'arriver.
 
-* Monitoring and observability : https://dzone.com/refcardz/getting-started-with-opentelemetry
+Les outils utilisés sont *les mêmes systèmes de monitoring que pour la phase Operate*, mais plutôt qu'être utilisés pour de l'alerting (c'est-à-dire notifier d'un problème / incident via l'envoi d'une alerte), ils vont servir à observer l'évolution de l'état de l'application afin de nous donner la capacité d'entreprendre des actions visant à prévenir tout futur problème. +
+Ces actions seront donc réalisées *AVANT* qu'un problème, et donc une alerte, ne soit remonté.
 
-* Observability : https://dzone.com/refcardz/full-stack-observability-essentials
-    ** Observability is "the ability to understand the current state of a system using only its external outputs."
-    ** l'article propose une différence entre observabilité et monitoring, et explique que l'observabilité est là pour augmenter le potentiel du monitoring
+Cette observation de l'évolution de l'état de l'application devant être réalisée sur un période de temps et non un instant "t", elle implique souvent l'utilisation de *timeseries* (séries temporelles).
 
-    ** "Monitoring is an action; a human or an automated process can do it if they know what signals to look for. It can generate alerts, provide insights, suggest actions, measure traffic or real-user activity, and warn when issues occur."
-    ** "Observability, on the other hand, lets you understand why the problem occurred. It is an approach that enables teams to ask questions about the holistic state of a system."
+Le *feedback* implique également l'observation de l'efficacité des actions correctives déjà menées : ces dernières ont-elles été efficaces ? Pérennes ? Workaround avant une solution durable ?
 
-Derrière cette notion de "feedback & monitoring", et même d'observabilité, il y a l'objectif de mieux comprendre l'application afin d'être capable d'anticiper, de prédire, son comportement futur, et de prévenir d'eventuels problèmes d'arriver.
-
-* Feedback : Besoin de remonter les conséquences d'une action corrective : retour à la normale ou pas ?
-
-== Schema resources
-
-WARNING: I first designed this schema in 2017/02, and some of the below resources I used when creating it are available anymore.
-
-* https://dzone.com/storage/assets/18140-Continuous-Delivery.pdf[DZone - The DZone guide to Continuous Delivery 2015]: p20/43
-* https://dzone.com/storage/assets/17431-docker-jenkins-continuous-delivery.pdf[DZone - Docker / Jenkins - Continuous Delivery]: p15/18
-* http://www.bogotobogo.com/DevOps/DevOps_CI_CD_Pipeline_Sample.php
-* http://www.rightscale.com/blog/cloud-management-best-practices/continuous-integration-and-delivery-cloud-how-rightscale-does-it
-* http://atginfo.com/demystifying-dev-ops-part-1/
-* http://agilityladder.nl/it-value/continuous-delivery/: circular graph on Continuous Delivery
-
-Ressources pour la description des phases du cycle DevOps : 
-
-    * https://medium.com/taptuit/the-eight-phases-of-a-devops-pipeline-fda53ec9bba
-        ** et pour la description des cycles Continuous Integration, Continuous Delivery, Continuous Deployment : +
-        https://medium.com/taptuit/what-is-devops-fb3d044ef659
-        
-    * https://blog.hubspot.com/website/devops-pipeline
-
-Explication de la Continuous Integration, Continuous Delivery et Continuous deployment
-
-    * Continuous Integration : 
-        ** https://aws.amazon.com/fr/devops/continuous-integration/
-    * Continuous Delivery : 
-        ** https://aws.amazon.com/fr/devops/continuous-delivery/
-    * Continuous Deployment : 
-        ** https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment
-    * Wikipedia pour les 3
-        ** https://en.wikipedia.org/wiki/Continuous_integration
-        ** https://en.wikipedia.org/wiki/Continuous_delivery
-        ** https://en.wikipedia.org/wiki/Continuous_deployment
-    * https://www.redhat.com/fr/topics/devops/what-is-ci-cd
-        ** pour la CI/CD, voir également la définition simple et efficace de https://fr.wikipedia.org/wiki/CI/CD
-
-Explication sur le DevOps : 
-
-    * https://medium.com/taptuit/what-is-devops-fb3d044ef659
-    * https://www.atlassian.com/fr/devops
-    * https://fr.wikipedia.org/wiki/Devops
-    * https://aws.amazon.com/fr/devops/what-is-devops/
-    * https://azure.microsoft.com/en-us/resources/cloud-computing-dictionary/what-is-devops/
 

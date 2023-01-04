@@ -227,7 +227,7 @@ Voici quelques exemples :
     ** "Monitoring is an action; a human or an automated process can do it if they know what signals to look for. It can generate alerts, provide insights, suggest actions, measure traffic or real-user activity, and warn when issues occur."
     ** "Observability, on the other hand, lets you understand why the problem occurred. It is an approach that enables teams to ask questions about the holistic state of a system."
 
-Derrière cette notion de "feedback & monitoring", et même d'observabilité, il y a l'objectif de mieux comprendre l'application afin d'être capable d'anticiper, de prédire, son comportement futur, et de prévenir d'eventuels problèmes d'arriver.
+Derrière cette notion de "feedback & monitoring", et même d'observabilité, il y a l'objectif de mieux comprendre l'application afin d'être capable d'anticiper, de prédire, son comportement futur, et de prévenir d'éventuels problèmes d'arriver.
 
 * Feedback : Besoin de remonter les conséquences d'une action corrective : retour à la normale ou pas ?
 
