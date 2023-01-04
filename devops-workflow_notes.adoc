@@ -60,7 +60,7 @@ Une fois écrit, le code doit être sauvegardé et partagé dans l'équipe à l'
         *** https://dzone.com/articles/why-i-prefer-trunk-based-development-over-feature
         *** 2022 : https://nira.com/git-branching-strategies-vs-trunk-based-development/ 
         *** https://hitesh-pattanayak.medium.com/git-flow-development-vs-trunk-based-debelopment-923ce4553043
-            **** je ne cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
+            **** je cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
             **** en fait, on retrouve ces schémas dans cet article de Medium (2018) : +
             https://medium.com/safetycultureengineering/trunks-are-not-just-for-trees-from-git-flow-to-trunk-based-development-949d580697ef
             **** très très bon REX du Git flow, de ses écueils, et des raisons du retour au trunk-based development
@@ -192,8 +192,6 @@ https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
 
 * Pour les ITS et outils de ticketing (bug reporting) : https://teambrain.fr/optimisez-votre-ticketing/
     ** JIRA, ServiceNow, Mantis, etc.
-    ** Plume pour La Poste (surtout bureautique) : +
-    "PLUME, c'est la Plateforme Unifiée pour le Management des services d'Entreprise du Groupe destinée à fédérer les actions des différents supports au service des postiers."
 
 * Les systèmes de monitoring sont souvent regroupés en sous-catégories suivant leur spécialité. +
 Voici quelques exemples : 

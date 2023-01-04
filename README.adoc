@@ -35,19 +35,64 @@ endif::[]
 
 toc::[]
 
-My try to represent a *complete DevOps workflow* as a schema, with the description of its phases.
+Ma représentation d'un *worflow DevOps complet* sous forme de schéma, avec la *description de ses phases*.
 
-== DevOps workflow and phases schema
+== Schéma d'un workflow DevOps et de ses phases
 
 image::DevOps%20AceTP.png[title="DevOps Workflow"]
 
 {nbsp} +
-Completely done with https://inkscape.org/en/[Inkscape]. +
-Created under license https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg[CC BY, 25, 25]
+Réalisé intégralement avec https://inkscape.org/en/[Inkscape]. +
+Sous licence https://en.wikipedia.org/wiki/Creative_Commons_license[Creative Commons *BY*] image:https://upload.wikimedia.org/wikipedia/commons/3/3c/Cc-by_new.svg[CC BY, 25, 25]
 
-TIP: The PNG and SVG files for this schema are available in the _images_ folder of this repo 😉 
+[TIP] 
+====
+* Les fichiers *PNG* and *SVG* du schéma sont disponibles dans le répertoire _images_ du repo 😉 
+* Mes *notes de recherche* sur les phases sont dans le fichier link:devops-workflow_notes.adoc[]
+====
 
-== Phases description
+== Description des phases
+
+=== Continuous "Everything"
+
+Cette section a pour objectif d'expliquer de quoi il est question quand on parle de "Continuous Integration", "Continuous Delivery", "Continuous Deployment" et de CI/CD.
+
+* *Continuous Integration* (*CI*) : +
+L'Intégration Continue s'aligne avec les phases *CODE*, *BUILD* et *TEST* du précédent schéma.
+{lb}
+Cette pratique consiste en l'*intégration régulière* par les développeurs des modifications de leur code source dans un *gestionnaire de code centralisé*, et en *l'automatisation de la conduite de tests* visant à détecter l'introduction de régressions dans le code. 
+
+* *Continuous Delivery* (*CD*) : +
+La Livraison Continue *complète l'Intégration Continue* à laquelle elle ajoute les phases *RELEASE* et *DEPLOY* du précédent schéma. +
+Une précision importante cependant : dans le cas de la Livraison Continue, le *déploiement*, associé à la phase DEPLOY, est le résultat d'une *action manuelle* et NON d'une exécution automatique.
+{lb}
+En plus des objectifs de la CI, la Livraison Continue rajoute les objectifs suivants : 
+    ** *L'automatisation de la création des livrables* de l'application
+    ** *L'automatisation du déploiement et de la configuration de ces livrables dans les différents environnements de qualification* (par exemple environnements d'intégration, de recette, de pre-prod) à l'exception de la production qui nécessite une approbation manuelle
+    ** *L'automatisation de la conduite de tests* dans les différents environnements où les livrables ont été déployés. +
+    Les livrables ne pouvant être "promus" dans un environnement supérieur qu'à partir du moment où ils ont validé les tests de l'environnement présent. +
+    Exemple : les livrables doivent valider les tests spécifiques à l'environnement d'intégration avant d'être promus (déployés) en environnement de recette.
+
+* *Continuous Deployment* (de nouveau "*CD*", comme pour le Continous Delivery) : +
+*Déploiement Continu et Livraison Continue sont similaires* à la seule différence que la Livraison Continue nécessite une action manuelle pour le déploiement des livrables en environnement de production (ce qui correspond à la véritable "MEP / Mise En Production" de l'application), alors que le Déploiement Continu réalise la mise en production automatiquement.
+
+.Continous Integration, Delivery and Deployment (https://aws.amazon.com/fr/devops/continuous-delivery/)
+image:continuous-integration-delivery-deployment.png[]
+
+* *CI/CD* : +
+L'expression "CI/CD" désigne simplement la combinaison de 2 ou 3 des pratiques précédentes : 
+** Continuous Integration (CI) et Continuous Delivery (CD)
+** Continuous Integration (CI) et Continuous Delivery (CD) et Continous Deployment (CD)
+{lb}
+On parlera souvent de "*chaîne de CI/CD*" pour désigner l'ensemble d'outils et le workflow d'étapes permettant d'implémenter les pratiques de CI et CD.
+
+* *DevOps* : +
+Le DevOps, contraction de *Dev* pour Development (Développement) et *Ops* pour Operations (Exploitation), désigne à la fois un ensemble de pratiques (auxquelles appartiennent celles précédemment décrites) et d'outils et une philosophie / culture de travail.
+{lb}
+Son but est d'améliorer la capacité d'une entreprise à *livrer rapidement* des applications et services, de *garantir leur qualité*, de *faciliter leur évolution* afin au final de *gagner en compétitivité*.
+{lb}
+On pourra parler aussi bien de "pratiques DevOps" que de "mouvement DevOps", d'"approche DevOps", ou encore de "cycle (de vie) DevOps" ou autre "pipeline" et "workflow" DevOps.
+
 
 === PLAN
 
@@ -72,7 +117,7 @@ Une fois écrit, le code doit être sauvegardé et partagé dans l'équipe à l'
         *** https://dzone.com/articles/why-i-prefer-trunk-based-development-over-feature
         *** 2022 : https://nira.com/git-branching-strategies-vs-trunk-based-development/ 
         *** https://hitesh-pattanayak.medium.com/git-flow-development-vs-trunk-based-debelopment-923ce4553043
-            **** je ne cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
+            **** je cite cet article avant tout pour son bon schéma de comparaison des 2 stratégies (simple et efficace)
             **** en fait, on retrouve ces schémas dans cet article de Medium (2018) : +
             https://medium.com/safetycultureengineering/trunks-are-not-just-for-trees-from-git-flow-to-trunk-based-development-949d580697ef
             **** très très bon REX du Git flow, de ses écueils, et des raisons du retour au trunk-based development
@@ -86,7 +131,7 @@ Une fois écrit, le code doit être sauvegardé et partagé dans l'équipe à l'
 
 La phase de BUILD est celle où le code source va être récupéré (du précédent repo manager) puis buildé afin de pouvoir être testé.
 
-Le résultat du build, souvent appelé « archive » (JAR pour Java ARchive, WAR pour Web ARchive, etc.), a pour vocation d'être ensuite déployé, testé et validé dans les différents environnements du projet (par exemple DEVELOPPEMENT, INTEGRATION, RECETTE, PRE-PRODUCTION et finalement PRODUCTION).
+Le résultat du build, souvent appelé "archive" (JAR pour Java ARchive, WAR pour Web ARchive, etc.), a pour vocation d'être ensuite déployé, testé et validé dans les différents environnements du projet (par exemple DEVELOPPEMENT, INTEGRATION, RECETTE, PRE-PRODUCTION et finalement PRODUCTION).
 
  	Il est à noter que l'on devrait toujours ne builder qu'une unique fois une archive, puis déployer et tester progressivement cette même archive dans les différents environnements et NON builder une archive spécifique par environnement
 
@@ -94,7 +139,7 @@ La création de l'archive à partir du code source est réalisée à l'aide d'un
 Parmi les plus connus on retrouve Maven, Gradle, Ant, NPM, etc.
 
 Le déclenchement du build est généralement réalisé par un outil d'automatisation, de type serveur d'intégration continue. 
-L'élément déclencheur du build (« trigger ») est soit une action manuelle, soit la détection en temps presque réel d'une modification du code dans le repo manager (présence d'un nouveau commit modifiant le code).
+L'élément déclencheur du build ("trigger") est soit une action manuelle, soit la détection en temps presque réel d'une modification du code dans le repo manager (présence d'un nouveau commit modifiant le code).
 Les serveurs d'intégration délègue ensuite la création de l'archive aux outils de build vus précédemment.
 Parmi les serveurs d'intégration continue les plus connus on retrouve Jenkins, Travis CI, GitLab CI, Azure DevOps, etc.
 
@@ -137,7 +182,7 @@ Les archives peuvent également être déployées dans plusieurs environnements 
 === RELEASE
 
 ----
-La phase de release est celle où le livrable de production (certains outils parleront de « package » ou « deployment package ») va être créé en combinant les archives précédemment buildées et testées avec les différents paramètres permettant de les dédier à l'environnement ciblé (package = archives + fichiers de paramétrage).
+La phase de release est celle où le livrable de production (certains outils parleront de "package" ou "deployment package") va être créé en combinant les archives précédemment buildées et testées avec les différents paramètres permettant de les dédier à l'environnement ciblé (package = archives + fichiers de paramétrage).
 
 Le livrable de production / package ainsi créé sera ensuite stocké dans un référentiel spécifique. 
 Suivant la nature du livrable, ce référentiel pourra être soit un repository manager (Nexus et Artifactory sont les plus utilisés), ou outil dédié (XL Deploy (maintenant Digital.ai Deploy)
@@ -204,8 +249,6 @@ https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
 
 * Pour les ITS et outils de ticketing (bug reporting) : https://teambrain.fr/optimisez-votre-ticketing/
     ** JIRA, ServiceNow, Mantis, etc.
-    ** Plume pour La Poste (surtout bureautique) : +
-    "PLUME, c'est la Plateforme Unifiée pour le Management des services d'Entreprise du Groupe destinée à fédérer les actions des différents supports au service des postiers."
 
 * Les systèmes de monitoring sont souvent regroupés en sous-catégories suivant leur spécialité. +
 Voici quelques exemples : 
