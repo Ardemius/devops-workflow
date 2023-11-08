@@ -168,9 +168,26 @@ Parmi les solutions de virtualisation et de conteneurisation les plus connues : 
 *IT alerting software* delivers notifications for *IT systems failures*. These tools will monitor systems for poor performance, infrastructure issues, and other IT management issues. These notifications may be delivered via email, SMS, or other means of communication. Companies use these tools to identify issues within their networks, IT infrastructure, and other IT systems to reduce downtime and prevent potential permanent damage.
 --
 
-* Très bon article sur OpenTelemetry, l'observabilité, les logs / métriques / traces : 
+* Très bon article sur *OpenTelemetry*, l'*observabilité*, les logs / métriques / traces : 
 https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
     ** OpenTelemetry : OpenTelemetry sera à terme le cadre d'observabilité dominant dans le paysage de télémétrie natif du cloud.
+
+.Définitions de ce que sont logs / métriques et traces
+====
+* *Logs* : 
+Un log est un *enregistrement sous forme de texte d'un événement qui s'est produit à un moment donné*. Chaque fois qu'un bloc de code est exécuté, une entrée est ajoutée au log pour consigner l'heure à laquelle l'événement s'est produit et fournir une « charge utile » de contexte sur cet événement. Les données de logs existent sous trois formes : *texte brut*, *structurées* et *non structurées*. +
+Le texte brut est le plus courant, mais les logs structurés, qui incluent des métadonnées supplémentaires et sont plus faciles à interroger, deviennent de plus en plus populaires. À l'inverse, les journaux non structurés sont plus difficiles à analyser. Les journaux sont généralement la source de vérité permettant de savoir ce que fait une application. Ce sont eux qu'on consulte en cas de problème dans un système, et les développeurs comptent sur eux pour dépanner leur code et vérifier son exécution. Une défaillance dans un système distribué s'explique généralement par une série de causes sous-jacentes (parfois appelées causes profondes), et la journalisation nous fournit des détails précis sur l'exécution de certains blocs de code.
+
+* *Métriques* : 
+Une métrique est une *valeur numérique mesurée sur un certain intervalle de temps*. Elle comprend des attributs spécifiques, dont l'horodatage, le nom de l'événement et la valeur de cet événement. +
+Contrairement aux logs, les métriques se présentent *par défaut sous une forme structurée*, ce qui les rend plus faciles à interroger. Cette caractéristique facilite également leur stockage, ce qui vous permet de conserver une grande quantité de métriques pendant de longues périodes et ainsi d'obtenir une meilleure perspective sur les tendances historiques d'un système. Les métriques sont idéales pour les grands ensembles de données ou les données collectées à intervalles réguliers, lorsque vous souhaitez une réponse à une question spécifique. Nous observons généralement les métriques sous une forme agrégée au fil du temps, une approche cruciale pour analyser et traiter les problèmes dans nos systèmes modernes. Sous forme agrégée ou de point unique, *les métriques alimentent des alertes* qui sont souvent le premier indicateur de problèmes dans nos systèmes.
+
+* *Traces* : 
+une trace représente le *trajet de bout en bout d'une requête à travers un système distribué*. De nombreuses opérations sont effectuées sur une même requête au fil de son parcours dans un système. Chaque opération est codée, accompagnée de données importantes, pour former une « unité logique » incluant l'*identifiant de trace*, l'*identifiant d'intervalle*, le *nom de l'opération*, un *horodatage de début et de fin*, des *logs*, des *événements* et d'autres informations indexées. En affichant une trace, grâce à ce qu'on appelle le traçage distribué, vous pouvez suivre le parcours d'exécution complet et identifier quelle partie du code est à l'origine d'erreurs, de latence ou de problèmes de disponibilité des ressources. Les traces peuvent également générer des métriques, notamment sous une forme appelée RED (taux, erreurs et durée). Surtout, les traces apportent du contexte aidant à déterminer quelles instances des deux autres piliers sont les plus indiqués pour résoudre un problème particulier.
+
+image:logs-metrics-traces-telemetry-data.jpg[]
+====
+
 
 * Prometheus : https://prometheus.io/docs/introduction/overview/
     ** "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud."
@@ -179,22 +196,24 @@ https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
 * Definition of *alerting and monitoring* : https://www.oreilly.com/library/view/effective-monitoring-and/9781449333515/ch01.html (TRES BON)
     ** contient également une bonne définition d'un *monitoring system* : +
     "A set of software components used for data collection, their processing, and presentation is called a monitoring system.""
-    
-    ** Différence entre monitoring et alerting : 
 
-        *** *MONITORING* (proactive monitoring) : +
-        "The former involves watching visual indicators, such as timeseries and dashboards, and is sometimes what administrators mean by monitoring." +
-        "Monitoring is the *process of maintaining surveillance over the existence and magnitude of state change* and data flow in a system. Monitoring aims to identify faults and assist in their subsequent elimination. The techniques used in monitoring of information systems intersect the fields of real-time processing, statistics, and data analysis. A set of software components used for data collection, their processing, and presentation is called a *monitoring system*."
 
-        *** *ALERTING* (reactive monitoring) : +
-        "involves automated ways to deliver notifications to operators in order to bring to their attention a grave change in system's state; this is usually referred to as alerting." +
-        "Alerting is the *capability of a monitoring system to detect and notify the operators about meaningful events that denote a grave change of state*. The notification is referred to as an alert and is a simple message that may take multiple forms: email, SMS, instant message (IM), or a phone call. The alert is passed on to the appropriate recipient, that is, a party responsible for dealing with the event. The alert is often logged in the form of a ticket in an *Issue Tracking System* (ITS), also referred to simply as *ticketing system*."
+.Différence entre monitoring et alerting
+====
+* *MONITORING* (proactive monitoring) : +
+"The former involves watching visual indicators, such as timeseries and dashboards, and is sometimes what administrators mean by monitoring." +
+"Monitoring is the *process of maintaining surveillance over the existence and magnitude of state change* and data flow in a system. Monitoring aims to identify faults and assist in their subsequent elimination. The techniques used in monitoring of information systems intersect the fields of real-time processing, statistics, and data analysis. A set of software components used for data collection, their processing, and presentation is called a *monitoring system*."
 
-            **** Definition of an *alert* : +
-            "An alert is a *notification of a potential problem*, which can take one or more of the following forms: email, SMS, phone call, or a ticket. An alert is issued by an alarm when the system transitions through some threshold, and this threshold breach is detected by a monitor. Thus, for example, you may configure an alarm to alert you when the system exceeds 80% of CPU utilization for a continuous period of 10 minutes." +
-            "A notification message informing about a change of state, typically signifying a potential problem."
+* *ALERTING* (reactive monitoring) : +
+"involves automated ways to deliver notifications to operators in order to bring to their attention a grave change in system's state; this is usually referred to as alerting." +
+"Alerting is the *capability of a monitoring system to detect and notify the operators about meaningful events that denote a grave change of state*. The notification is referred to as an alert and is a simple message that may take multiple forms: email, SMS, instant message (IM), or a phone call. The alert is passed on to the appropriate recipient, that is, a party responsible for dealing with the event. The alert is often logged in the form of a ticket in an *Issue Tracking System* (ITS), also referred to simply as *ticketing system*."
 
-    ** On ne peut PAS avoir d'alerting sans monitoring
+    ** Definition of an *alert* : +
+    "An alert is a *notification of a potential problem*, which can take one or more of the following forms: email, SMS, phone call, or a ticket. An alert is issued by an alarm when the system transitions through some threshold, and this threshold breach is detected by a monitor. Thus, for example, you may configure an alarm to alert you when the system exceeds 80% of CPU utilization for a continuous period of 10 minutes." +
+    "A notification message informing about a change of state, typically signifying a potential problem."
+
+-> On ne peut PAS avoir d'alerting sans monitoring
+====
 
 * Pour les ITS et outils de ticketing (bug reporting) : https://teambrain.fr/optimisez-votre-ticketing/
     ** JIRA, ServiceNow, Mantis, etc.
