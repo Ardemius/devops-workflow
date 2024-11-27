@@ -1,0 +1,143 @@
+= Présentation d'OpenTelemetry
+Thomas SCHWENDER <icon:github[] https://github.com/Ardemius/[GitHub] / icon:twitter[role="aqua"] https://twitter.com/thomasschwender[@thomasschwender]>
+// Handling GitHub admonition blocks icons
+ifndef::env-github[:icons: font]
+ifdef::env-github[]
+:status:
+:outfilesuffix: .adoc
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+:imagesdir: ./images
+:resourcesdir: ./resources
+:source-highlighter: highlightjs
+:highlightjs-languages: asciidoc
+// We must enable experimental attribute to display Keyboard, button, and menu macros
+:experimental:
+// Next 2 ones are to handle line breaks in some particular elements (list, footnotes, etc.)
+:lb: pass:[<br> +]
+:sb: pass:[<br>]
+// check https://github.com/Ardemius/personal-wiki/wiki/AsciiDoctor-tips for tips on table of content in GitHub
+:toc: macro
+:toclevels: 4
+// To number the sections of the table of contents
+//:sectnums:
+// Add an anchor with hyperlink before the section title
+:sectanchors:
+// To turn off figure caption labels and numbers
+:figure-caption!:
+// Same for examples
+//:example-caption!:
+// To turn off ALL captions
+// :caption:
+
+toc::[]
+
+== Présentation générale de la solution et objectifs
+
+* Projet opensource dont l'objectif est de fournir une solution unifiée pour la collecte et l'exportation de données d'observabilité / télémétrie (métriques, logs, traces) pour tout type d'application (on-premises ou Cloud)
+* Il offre une API unifiée implémentée par différents SDK (pour Java, Python, Go, etc.), ainsi que des agents 
+générées par les applications. Il offre un ensemble d'API, de SDK et d'outils permettant d'instrumenter les applications de manière standardisée, quelle que soit la technologie utilisée.
+
+Définitions clés. Observabilité : L' observabilité est la capacité à déduire le fonctionnement interne d'un système à partir de ses sorties externes. Télémétrie : Le processus automatisé de collecte et de transmission de données à partir de sources distantes vers un emplacement central à des fins d'analyse et de surveillance.
+
+== Principaux avantages d'OpenTelemetry
+
+* Unification des données : OpenTelemetry permet de collecter différents types de données de télémétrie (métriques, logs, traces) dans un format standardisé, facilitant ainsi l'analyse et la corrélation.
+* Vendor-neutral : Les données collectées par OpenTelemetry peuvent être exportées vers différents backends d'observabilité (Splunk, New Relic, Dynatrace, etc.), offrant une grande flexibilité.
+* Communauté active : OpenTelemetry bénéficie d'une communauté active et de contributions de nombreux acteurs de l'industrie, garantissant ainsi son évolution et son adoption à grande échelle.
+
+== Architecture d'OpenTelemetry
+
+[Image d'une architecture OpenTelemetry typique, montrant les différents composants : SDK, collecteur, exportateurs]
+
+Parler d'Agent, de SDK et de Collector OpenTelemetry
+
+== Utilisation d'OpenTelemetry sur Azure
+
+OpenTelemetry s'intègre parfaitement dans l'écosystème Azure, et permet une gestion plus poussée des données d'observabilité des applications Azure.
+
+Les principaux scénarios d'utilisation sont :
+
+    * Instrumentation des applications Azure : Les SDK OpenTelemetry peuvent être intégrés dans les applications Azure (Web Apps, Functions, Containers, etc.) pour collecter des données de télémétrie.
+    * Intégration avec Azure Monitor : OpenTelemetry peut être configuré pour exporter les données de télémétrie vers Azure Monitor, permettant ainsi de bénéficier des fonctionnalités avancées d'analyse et de visualisation d'Azure Monitor.
+    * Intégration avec des outils tiers : Les données collectées par OpenTelemetry peuvent également être exportées vers des outils tiers comme Dynatrace, pour une analyse plus approfondie ou pour bénéficier de fonctionnalités spécifiques à ces outils.
+
+== Cas d'usage : envoi de données vers Dynatrace
+
+Pour envoyer les données d'observabilité collectées par OpenTelemetry vers Dynatrace, vous pouvez utiliser l'exportateur Dynatrace fourni par OpenTelemetry. Cet exportateur permet de configurer la transmission des données vers l'agent Dynatrace déployé dans votre environnement.
+
+Les étapes clés sont les suivantes :
+
+    * Instrumentation de l'application : Intégrer le SDK OpenTelemetry dans votre application Azure et instrumenter les points d'intérêt (méthodes, requêtes, etc.).
+    * Configuration de l'exportateur Dynatrace : Configurer l'exportateur Dynatrace avec les informations de connexion à votre environnement Dynatrace.
+    * Démarrage de la collecte : Lancer votre application et vérifier que les données sont bien collectées et envoyées vers Dynatrace.
+
+Avantages de cette approche :
+
+    * Unification des données : Toutes les données de télémétrie (métriques, logs, traces) sont collectées dans un format standardisé par OpenTelemetry.
+    * Flexibilité : Vous pouvez choisir d'envoyer les données vers d'autres outils si nécessaire.
+    * Réduction de la complexité : OpenTelemetry simplifie la collecte et l'exportation des données de télémétrie.
+
+== Quand et pourquoi utiliser OpenTelemetry EN PLUS d'Azure Monitor ?
+
+l'activation d'Azure Monitor sur une application Azure App Service permet déjà de collecter une partie des données de télémétrie, notamment les logs. +
+Cependant, *OpenTelemetry* offre une *couche d'instrumentation supplémentaire* qui apporte plusieurs avantages :
+
+* Granularité et contexte :
+
+    ** Traces distribuées : OpenTelemetry permet de suivre une requête à travers plusieurs services, en créant des traces distribuées qui montrent l'enchaînement des appels. Cela est particulièrement utile pour les applications microservices.
+    ** Métriques personnalisées : Vous pouvez définir des métriques personnalisées pour mesurer des aspects spécifiques de votre application (temps de réponse, taux d'erreur, etc.).
+    ** Contextualisation des logs : Les logs peuvent être enrichis avec des informations contextuelles provenant des traces (ID de requête, utilisateur, etc.), facilitant ainsi l'analyse.
+
+* Standardisation et interopérabilité :
+
+    ** Format standard : OpenTelemetry utilise un format de données standardisé, ce qui facilite l'intégration avec différents backends d'observabilité (Dynatrace, Jaeger, etc.) et facilite les migrations.
+    ** Communauté active : Bénéficier d'une communauté active et de nombreux outils et bibliothèques.
+    
+* Automatisation et extensibilité :
+
+    ** Auto-instrumentation : Pour certaines technologies, OpenTelemetry propose des mécanismes d'auto-instrumentation qui réduisent le besoin de modifications manuelles du code.
+    ** Extensibilité : Vous pouvez facilement ajouter de nouveaux instruments pour collecter des données supplémentaires.
+
+Quand faut-il instrumenter manuellement ?
+
+    * Métriques personnalisées : Si vous avez besoin de mesurer des indicateurs spécifiques à votre application.
+    * Traces distribuées : Pour suivre les requêtes à travers plusieurs services.
+    * Contextualisation des logs : Pour enrichir les logs avec des informations supplémentaires.
+    * Technologies non supportées par l'auto-instrumentation : Si votre technologie n'est pas encore prise en charge par l'auto-instrumentation.
+
+En résumé : 
+
+    * Azure Monitor offre une base solide pour la collecte des logs, mais OpenTelemetry apporte une couche d'instrumentation plus riche et plus flexible pour une observabilité complète de vos applications.
+    * L'instrumentation manuelle n'est pas toujours nécessaire, mais elle peut être utile dans certains cas pour obtenir des données plus granulaires et mieux adaptées à vos besoins.
+    * En conclusion, l'utilisation d'OpenTelemetry sur Azure est complémentaire à Azure Monitor et permet d'améliorer significativement votre capacité à comprendre et à optimiser vos applications.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

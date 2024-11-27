@@ -171,6 +171,8 @@ Parmi les solutions de virtualisation et de conteneurisation les plus connues : 
 * Très bon article sur *OpenTelemetry*, l'*observabilité*, les logs / métriques / traces : 
 https://www.splunk.com/fr_fr/data-insider/what-is-opentelemetry.html
     ** OpenTelemetry : OpenTelemetry sera à terme le cadre d'observabilité dominant dans le paysage de télémétrie natif du cloud.
+* Très bonne présentation vidéo, complète et concise, de *OpenTelemetry* : +
+"Une (brève) introduction à OpenTelemetry (2023/05)"" par Stanilas Quastana : https://www.youtube.com/watch?v=avxwyYUkXe0
 
 .Définitions de ce que sont logs / métriques et traces
 ====
@@ -187,7 +189,6 @@ une trace représente le *trajet de bout en bout d'une requête à travers un sy
 
 image:logs-metrics-traces-telemetry-data.jpg[]
 ====
-
 
 * Prometheus : https://prometheus.io/docs/introduction/overview/
     ** "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud."
@@ -253,6 +254,18 @@ Voici quelques exemples :
     ** "Observability, on the other hand, lets you understand why the problem occurred. It is an approach that enables teams to ask questions about the holistic state of a system."
 
 Derrière cette notion de "feedback & monitoring", et même d'observabilité, il y a l'objectif de mieux comprendre l'application afin d'être capable d'anticiper, de prédire, son comportement futur, et de prévenir d'éventuels problèmes d'arriver.
+
+.Définitions données par Bard (validées)
+--
+* L'*observabilité* est la *capacité à comprendre le comportement d'un système en se basant sur les données qu'il génère*. Elle permet de comprendre comment le système fonctionne, et d'identifier les problèmes potentiels.
+
+* La *supervision* est le processus de collecte et d'analyse des données d'un système afin de *détecter les anomalies ou les défaillances*. Elle permet de garantir que le système fonctionne correctement.
+
+* Le *monitoring* est un terme plus général qui désigne la collecte et l'analyse des données d'un système. Il peut être utilisé à des fins d'observabilité, de supervision ou d'autres objectifs.
+
+En résumé, l'observabilité est un concept plus général que la supervision et le monitoring. La supervision est une forme d'observabilité qui vise à détecter les anomalies ou les défaillances. Le monitoring est un terme plus général qui peut être utilisé à des fins d'observabilité, de supervision ou d'autres objectifs.
+--
+
 
 * Feedback : Besoin de remonter les conséquences d'une action corrective : retour à la normale ou pas ?
 
