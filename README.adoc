@@ -33,7 +33,7 @@ endif::[]
 // To turn off ALL captions
 // :caption:
 
-toc::[]
+//toc::[]
 
 Un repo pour stocker tout mon contenu associé au mouvement et aux pratiques *DevOps*. +
 Il y sera donc question, entre autres, de gestion de configuration, d'IaC, de tests et de leur d'automatisation, d'observabilité, etc.
