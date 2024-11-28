@@ -87,6 +87,7 @@ Les principaux composants de la plateforme OpenTelemetry :
         ** Ce protocole est en train de devenir un standard dans l'IT.
 
 image:openTelemetry_03.jpg[]
+image:openTelemetry_04.jpg[]
 
 En parallèle de ces composants, les *connecteurs* ("*connector*") développés par d'autres éditeurs sont des outils servant de *pont entre OpenTelemetry et un système tiers* (un outil de monitoring, une base de données, une plateforme cloud, etc.). +
 Ces connecteurs permet soit : 
@@ -140,16 +141,6 @@ image:openTelemetry_01.jpg[]
 Pour plus de détails, voir https://opentelemetry.io/docs/collector/building/connector/
 ====
 
-== Utilisation d'OpenTelemetry sur Azure
-
-Plutôt que d'instrumenter directement le code de son application à l'aide d'un SDK OpenTelemetry, il est recommandé dans le cas d'Azure d'*utiliser un agent OpenTelemetry*.
-
-Raison de préférer un agent pour Azure : 
-
-    * Simplicité : L'agent est préconfiguré pour fonctionner avec Azure Monitor, pas besoin de gérer les détails de la configuration.
-    * Automatisation : L'agent collecte les données de manière automatique, pas besoin de modifier son code.
-    * Maintenance : Azure gère la mise à jour et la maintenance de l'agent, vous n'avez pas à vous en soucier.
-    * Intégration : L'agent est étroitement intégré avec Azure Monitor, la visualisation et l'analyse des données en sont améliorées
 
 
 
