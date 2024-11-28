@@ -66,8 +66,10 @@ De nombreux éditeurs ont développé des connecteurs pour aller récupérer les
 
 Les principaux composants de la plateforme OpenTelemetry : 
 
-    * *Agent* : Collecte les données au niveau de l'application
+    * *Agent* (on parlera aussi d'*auto-instrumentation*) : Collecte automatiquement les données au niveau de l'application, sans besoin de modifier le code source de l'application
         ** Son rôle principal est d'instrumenter l'application et d'envoyer les données de télémétrie à un point de collecte, généralement un collector.
+        ** Pour un exemple d'agent, voici celui de Java : https://github.com/open-telemetry/opentelemetry-java-instrumentation +
+        "This project provides a Java agent JAR that can be attached to any Java 8+ application and dynamically injects bytecode to capture telemetry from a number of popular libraries and frameworks"
 
     * *Collector* : Reçoit, traite et exporte les données
         ** Il est le point central de collecte des données de télémétrie. Il reçoit les données des agents et peut les exporter vers différents backends.
@@ -141,8 +143,18 @@ image:openTelemetry_01.jpg[]
 Pour plus de détails, voir https://opentelemetry.io/docs/collector/building/connector/
 ====
 
+== Utilisation d'OpenTelemetry sur Azure (A CREUSER)
 
+Plutôt que d'instrumenter directement le code de son application à l'aide d'un SDK OpenTelemetry, il est recommandé dans le cas d'Azure d'*utiliser un agent OpenTelemetry*.
 
+Raison de préférer un agent pour Azure : 
+
+    * Simplicité : L'agent est préconfiguré pour fonctionner avec Azure Monitor, pas besoin de gérer les détails de la configuration.
+    * Automatisation : L'agent collecte les données de manière automatique, pas besoin de modifier son code.
+    * Maintenance : Azure gère la mise à jour et la maintenance de l'agent, vous n'avez pas à vous en soucier.
+    * Intégration : L'agent est étroitement intégré avec Azure Monitor, la visualisation et l'analyse des données en sont améliorées
+
+-> Pour plus d'informations, voir https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable?tabs=python
 
 
 
