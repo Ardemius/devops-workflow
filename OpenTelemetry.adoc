@@ -66,10 +66,14 @@ De nombreux éditeurs ont développé des connecteurs pour aller récupérer les
 
 Les principaux composants de la plateforme OpenTelemetry : 
 
-    * *Agent* (on parlera aussi d'*auto-instrumentation*) : Collecte automatiquement les données au niveau de l'application, sans besoin de modifier le code source de l'application
+    * *Agent* (on parlera aussi d'*auto-instrumentation* ou de *Zero-code*) : Collecte automatiquement les données au niveau de l'application, sans besoin de modifier le code source de l'application
         ** Son rôle principal est d'instrumenter l'application et d'envoyer les données de télémétrie à un point de collecte, généralement un collector.
         ** Pour un exemple d'agent, voici celui de Java : https://github.com/open-telemetry/opentelemetry-java-instrumentation +
         "This project provides a Java agent JAR that can be attached to any Java 8+ application and dynamically injects bytecode to capture telemetry from a number of popular libraries and frameworks"
+            *** Voir également https://opentelemetry.io/docs/languages/java/intro/
+        ** Pour plus de détails sur ce type d'instrumentation, voir la doc officielle d'OpenTelemetry : https://opentelemetry.io/docs/concepts/instrumentation/zero-code/
+            *** "Zero-code instrumentation adds the OpenTelemetry API and SDK capabilities to your application typically as an agent or agent-like installation. The specific mechanisms involved may differ by language, ranging from bytecode manipulation, monkey patching, or eBPF to inject calls to the OpenTelemetry API and SDK into your application. +
+            Typically, zero-code instrumentation adds instrumentation for the libraries you're using. This means that requests and responses, database calls, message queue calls, and so forth are what are instrumented. Your application's code, however, is not typically instrumented. To instrument your code, you'll need to use code-based instrumentation."
 
     * *Collector* : Reçoit, traite et exporte les données
         ** Il est le point central de collecte des données de télémétrie. Il reçoit les données des agents et peut les exporter vers différents backends.
